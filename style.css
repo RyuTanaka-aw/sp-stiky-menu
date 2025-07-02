@@ -1,0 +1,254 @@
+/* リセットCSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+    overflow-x: hidden;
+}
+
+/* ヘッダー */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    color: white;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    max-width: 100%;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* ハンバーガーボタン */
+.hamburger-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.hamburger-button span {
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.hamburger-button.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger-button.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-button.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* メインコンテンツ */
+.main-content {
+    margin-top: 80px;
+    padding: 2rem;
+}
+
+/* オーバーレイ */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* サイドメニュー */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100vh;
+    background-color: white;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+    transition: right 0.3s ease;
+    z-index: 1002;
+    overflow-y: auto;
+}
+
+.side-menu.active {
+    right: 0;
+}
+
+/* メニューヘッダー */
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #333;
+    color: white;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* メニューコンテンツ */
+.menu-content {
+    padding: 0;
+}
+
+.menu-item {
+    border-bottom: 1px solid #eee;
+}
+
+.menu-toggle,
+.submenu-toggle {
+    width: 100%;
+    padding: 1rem;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.menu-toggle:hover,
+.submenu-toggle:hover {
+    background-color: #f0f0f0;
+}
+
+.menu-toggle {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.submenu-toggle {
+    padding-left: 2rem;
+    background-color: #f9f9f9;
+}
+
+.arrow {
+    transition: transform 0.3s ease;
+    font-size: 0.8rem;
+}
+
+.arrow.rotated {
+    transform: rotate(180deg);
+}
+
+/* サブメニュー */
+.submenu {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+}
+
+.submenu.active {
+    height: auto;
+}
+
+.submenu-item {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* リンクリスト */
+.link-list {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    background-color: #fafafa;
+}
+
+.link-list.active {
+    height: auto;
+}
+
+.link-item {
+    display: block;
+    padding: 0.8rem 3rem;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
+}
+
+.link-item:hover {
+    background-color: #e8e8e8;
+}
+
+.link-item:last-child {
+    border-bottom: none;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 480px) {
+    .side-menu {
+        width: 280px;
+    }
+    
+    .header-content {
+        padding: 0.8rem;
+    }
+    
+    .main-content {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .side-menu {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .side-menu.active {
+        right: 0;
+    }
+} 
