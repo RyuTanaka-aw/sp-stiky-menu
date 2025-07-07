@@ -79,15 +79,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     // サブメニューも閉じる
                     const otherSubmenus = otherMenu ? otherMenu.querySelectorAll('.link-list.active') : [];
-                    const otherSubmenuToggles = otherMenu ? otherMenu.querySelectorAll('.submenu-toggle .arrow') : [];
+                    const otherSubmenuToggles = otherMenu ? otherMenu.querySelectorAll('.submenu-toggle') : [];
                     
                     otherSubmenus.forEach(function(submenu) {
                         slideUp(submenu);
                         submenu.classList.remove('active');
                     });
                     
-                    otherSubmenuToggles.forEach(function(submenuArrow) {
+                    otherSubmenuToggles.forEach(function(submenuToggle) {
+                        const submenuArrow = submenuToggle.querySelector('.arrow');
                         submenuArrow.classList.remove('rotated');
+                        // stickyクラスを削除
+                        submenuToggle.classList.remove('sticky');
                     });
                 }
             });
@@ -101,15 +104,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     // サブメニューも閉じる
                     const submenus = targetMenu.querySelectorAll('.link-list.active');
-                    const submenuArrows = targetMenu.querySelectorAll('.submenu-toggle .arrow');
+                    const submenuTogglesInMenu = targetMenu.querySelectorAll('.submenu-toggle');
                     
                     submenus.forEach(function(submenu) {
                         slideUp(submenu);
                         submenu.classList.remove('active');
                     });
                     
-                    submenuArrows.forEach(function(submenuArrow) {
+                    submenuTogglesInMenu.forEach(function(submenuToggle) {
+                        const submenuArrow = submenuToggle.querySelector('.arrow');
                         submenuArrow.classList.remove('rotated');
+                        // stickyクラスを削除
+                        submenuToggle.classList.remove('sticky');
                     });
                 } else {
                     slideDown(targetMenu);
@@ -142,6 +148,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             slideUp(siblingList);
                             siblingList.classList.remove('active');
                             siblingArrow.classList.remove('rotated');
+                            // stickyクラスを削除
+                            siblingToggle.classList.remove('sticky');
                         }
                     }
                 });
@@ -153,10 +161,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     slideUp(targetList);
                     targetList.classList.remove('active');
                     arrow.classList.remove('rotated');
+                    // stickyクラスを削除
+                    toggle.classList.remove('sticky');
                 } else {
                     slideDown(targetList);
                     targetList.classList.add('active');
                     arrow.classList.add('rotated');
+                    // stickyクラスを追加
+                    toggle.classList.add('sticky');
                 }
             }
         });

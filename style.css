@@ -187,10 +187,14 @@ body {
 .submenu-toggle {
     padding-left: 2rem;
     background-color: #f9f9f9;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.submenu-toggle.sticky {
     position: sticky;
     top: 0;
     z-index: 9;
-    border-bottom: 1px solid #f0f0f0;
+    background-color: #f9f9f9;
 }
 
 .arrow {
@@ -211,6 +215,7 @@ body {
 
 .submenu.active {
     height: auto;
+    min-height: 100vh;
 }
 
 .submenu-item {
@@ -227,15 +232,6 @@ body {
 
 .link-list.active {
     height: auto;
-    max-height: 400px;
-    overflow-y: auto;
-    /* スクロールバーを非表示 */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
-}
-
-.link-list.active::-webkit-scrollbar {
-    display: none;  /* Safari and Chrome */
 }
 
 .link-item {
