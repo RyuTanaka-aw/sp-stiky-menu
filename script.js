@@ -83,8 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     submenuTogglesInMenu.forEach(function(submenuToggle) {
                         const submenuArrow = submenuToggle.querySelector('.arrow');
                         submenuArrow.classList.remove('rotated');
-                        // stickyクラスを削除
-                        submenuToggle.classList.remove('sticky');
                     });
                 } else {
                     slideDown(targetMenu);
@@ -108,14 +106,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     slideUp(targetList);
                     targetList.classList.remove('active');
                     arrow.classList.remove('rotated');
-                    // stickyクラスを削除
-                    toggle.classList.remove('sticky');
                 } else {
                     slideDown(targetList);
                     targetList.classList.add('active');
                     arrow.classList.add('rotated');
-                    // stickyクラスを追加
-                    toggle.classList.add('sticky');
                 }
             }
         });
