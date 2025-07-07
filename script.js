@@ -64,38 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetMenu = document.getElementById(targetId);
             const arrow = this.querySelector('.arrow');
             
-            // 他のメインメニューを閉じる
-            menuToggles.forEach(function(otherToggle) {
-                if (otherToggle !== toggle) {
-                    const otherId = otherToggle.getAttribute('data-target');
-                    const otherMenu = document.getElementById(otherId);
-                    const otherArrow = otherToggle.querySelector('.arrow');
-                    
-                    if (otherMenu && otherMenu.classList.contains('active')) {
-                        slideUp(otherMenu);
-                        otherMenu.classList.remove('active');
-                        otherArrow.classList.remove('rotated');
-                    }
-                    
-                    // サブメニューも閉じる
-                    const otherSubmenus = otherMenu ? otherMenu.querySelectorAll('.link-list.active') : [];
-                    const otherSubmenuToggles = otherMenu ? otherMenu.querySelectorAll('.submenu-toggle') : [];
-                    
-                    otherSubmenus.forEach(function(submenu) {
-                        slideUp(submenu);
-                        submenu.classList.remove('active');
-                    });
-                    
-                    otherSubmenuToggles.forEach(function(submenuToggle) {
-                        const submenuArrow = submenuToggle.querySelector('.arrow');
-                        submenuArrow.classList.remove('rotated');
-                        // stickyクラスを削除
-                        submenuToggle.classList.remove('sticky');
-                    });
-                }
-            });
-            
-            // 現在のメニューの開閉
+            // 現在のメニューの開閉のみ（他のメインメニューは閉じない）
             if (targetMenu) {
                 if (targetMenu.classList.contains('active')) {
                     slideUp(targetMenu);
@@ -133,29 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetList = document.getElementById(targetId);
             const arrow = this.querySelector('.arrow');
             
-            // 同じメインメニュー内の他のサブメニューを閉じる
-            const parentSubmenu = this.closest('.submenu');
-            if (parentSubmenu) {
-                const siblingToggles = parentSubmenu.querySelectorAll('.submenu-toggle');
-                
-                siblingToggles.forEach(function(siblingToggle) {
-                    if (siblingToggle !== toggle) {
-                        const siblingId = siblingToggle.getAttribute('data-target');
-                        const siblingList = document.getElementById(siblingId);
-                        const siblingArrow = siblingToggle.querySelector('.arrow');
-                        
-                        if (siblingList && siblingList.classList.contains('active')) {
-                            slideUp(siblingList);
-                            siblingList.classList.remove('active');
-                            siblingArrow.classList.remove('rotated');
-                            // stickyクラスを削除
-                            siblingToggle.classList.remove('sticky');
-                        }
-                    }
-                });
-            }
-            
-            // 現在のサブメニューの開閉
+            // 現在のサブメニューの開閉のみ（他のサブメニューは閉じない）
             if (targetList) {
                 if (targetList.classList.contains('active')) {
                     slideUp(targetList);
