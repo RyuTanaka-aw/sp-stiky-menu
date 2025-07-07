@@ -8,6 +8,31 @@ document.addEventListener('DOMContentLoaded', function() {
     // メニュートグルボタンとサブメニュートグルボタンの取得
     const menuToggles = document.querySelectorAll('.menu-toggle');
     const submenuToggles = document.querySelectorAll('.submenu-toggle');
+    
+    // Sticky位置を動的に計算する関数
+    function updateStickyPositions() {
+        const menuHeader = document.querySelector('.menu-header');
+        const menuToggle = document.querySelector('.menu-toggle');
+        
+        if (menuHeader && menuToggle) {
+            // メニューヘッダーの高さを取得
+            const headerHeight = menuHeader.offsetHeight;
+            
+            // メニュートグルの高さを取得
+            const menuToggleHeight = menuToggle.offsetHeight;
+            
+            // メインメニューのsticky位置を設定
+            menuToggles.forEach(toggle => {
+                toggle.style.top = headerHeight + 'px';
+            });
+            
+            // サブメニューのsticky位置を設定（ヘッダー高さ + メインメニュー高さ）
+            const submenuTop = headerHeight + menuToggleHeight;
+            submenuToggles.forEach(toggle => {
+                toggle.style.top = submenuTop + 'px';
+            });
+        }
+    }
 
     // ハンバーガーメニューの開閉
     function toggleMenu() {
@@ -127,5 +152,18 @@ document.addEventListener('DOMContentLoaded', function() {
         if (window.innerWidth > 768 && sideMenu.classList.contains('active')) {
             closeMenu();
         }
+        // リサイズ時にsticky位置を再計算
+        updateStickyPositions();
     });
+    
+    // 初期化時にsticky位置を設定
+    updateStickyPositions();
+    
+    // メニューが開かれた時にも位置を再計算（要素のサイズが確定した後）
+    const originalToggleMenu = toggleMenu;
+    toggleMenu = function() {
+        originalToggleMenu();
+        // メニューが開かれた後に位置を再計算
+        setTimeout(updateStickyPositions, 10);
+    };
 }); 

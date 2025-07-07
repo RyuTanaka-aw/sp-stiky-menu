@@ -181,7 +181,6 @@ body {
     font-weight: bold;
     font-size: 1.1rem;
     position: sticky;
-    top: 68px;
     background-color: rgb(70, 105, 155);
     color: white;
     z-index: 10;
@@ -194,7 +193,6 @@ body {
     color: rgb(60, 70, 85);
     border-bottom: 1px solid rgb(185, 195, 210);
     position: sticky;
-    top: 127px;
     z-index: 9;
 }
 
